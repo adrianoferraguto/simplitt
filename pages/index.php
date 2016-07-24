@@ -34,6 +34,7 @@ $posts = array();
 
             }
         }
+        $showLink = true;
         foreach($posts as &$post){
             $_GET['id'] = $post;
             include("../scripts/postPanel.php");

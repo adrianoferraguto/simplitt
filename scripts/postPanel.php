@@ -54,7 +54,8 @@ if ($result = $conn->query($query)) {
                 <?php echo substr($row['content'],0,1000)?>
             </div>
             <div class="panel-footer">
-                Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime'].' <a href="post.php?id='.$row['idPost'].'">Permalink</a><br>'; ?>
+                Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime'];
+                if($showLink){ echo ' <a href="post.php?id='.$row['idPost'].'">Permalink</a>'; } echo '<br>'; ?>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP"><span class="glyphicon glyphicon-chevron-up"<?php if($didUpvote) echo ' style="color:red"' ?>></span>Upvote</a>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN"><span class="glyphicon glyphicon-chevron-down"<?php if($didDownvote) echo ' style="color:red"' ?>></span>Downvote</a><br>
                 Post karma: <?php echo ($upvotes-$downvotes); ?> (<?php echo $upvotes; ?> upvotes and <?php echo $downvotes; ?> downvotes)

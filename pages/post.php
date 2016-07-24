@@ -18,21 +18,8 @@ include("../static/header.php");
 
 <!--Post-->
 <?php
-
-$query = "SELECT * FROM posts, users WHERE posts.userId = users.id AND posts.id=$_GET[id]";
-
-if ($result = $conn->query($query)) {
-
-    /* fetch associative array */
-    while ($row = $result->fetch_assoc()) {
-        echo "Posted by: ".$row['username']."<br>";
-        echo "<h3>".$row['title']."</h3><br>";
-        echo $row['content']."<br><br>";
-    }
-
-    /* free result set */
-    $result->free();
-}
+    $showLink = false;
+    include("../scripts/postPanel.php");
 ?>
 
 <!--Comment box-->
