@@ -11,6 +11,8 @@ $pagename = "Submit content";
 
 include("../static/config.php");
 
+if(!isset($_SESSION['id'])) { header("Location: login.php"); }
+
 include("../static/header.php");
 
 ?>
