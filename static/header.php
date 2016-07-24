@@ -5,6 +5,9 @@
  * Date: 17/07/2016
  * Time: 23.54
  */
+
+include("../scripts/karma.php");
+
 ?>
 
 <!doctype html>
@@ -58,7 +61,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php echo $_SESSION['username'] ?> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Karma: <strong>555</strong></a></li>
+                                <li><a href="#">Karma: <strong><?php echo getUserKarma($_SESSION['id']); ?></strong></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="../pages/profile.php?id=<?php echo $_SESSION['id']; ?>">My profile</a></li>
                                 <li><a href="#">Account settings</a></li>

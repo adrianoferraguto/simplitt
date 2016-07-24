@@ -22,7 +22,7 @@ $posts = array();
 <?php
 
 $query = "SELECT *, p.id as idPost FROM posts as p, users as u WHERE u.id = p.userId AND u.id = ".$_GET['id']." ORDER BY p.id";
-echo "<h2>".$conn->query($query)->fetch_assoc()['username']." <small>Karma: 555</small></h2>";
+echo "<h2>".$conn->query($query)->fetch_assoc()['username']." <small>Karma: ".getUserKarma($_GET['id'])."</small></h2>";
 if ($result = $conn->query($query)) {
 
     /* fetch associative array */
