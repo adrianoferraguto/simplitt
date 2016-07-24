@@ -38,6 +38,12 @@ if ($result = $conn->query($query)) {
         $upvotes = $conn->query("SELECT count(*) as votes FROM postsvotes, posts WHERE posts.id = postsvotes.postId AND posts.id = ".$row['idPost']." AND postsvotes.type = 'UP';")->fetch_assoc()['votes'];
         $downvotes = $conn->query("SELECT count(*) as votes FROM postsvotes, posts WHERE posts.id = postsvotes.postId AND posts.id = ".$row['idPost']." AND postsvotes.type = 'DOWN';")->fetch_assoc()['votes'];
 
+        if(!isset($_SESSION['id'])) { $didUpvote=0; $didDownvote=0; }
+        else {
+            $didUpvote = $conn->query("SELECT * FROM postsvotes, posts WHERE posts.id = postsvotes.postId AND posts.id = " . $row['idPost'] . " AND postsvotes.type = 'UP' AND postsvotes.userId = " . $_SESSION['id'] . ";")->num_rows;
+            $didDownvote = $conn->query("SELECT * FROM postsvotes, posts WHERE posts.id = postsvotes.postId AND posts.id = " . $row['idPost'] . " AND postsvotes.type = 'DOWN' AND postsvotes.userId = " . $_SESSION['id'] . ";")->num_rows;
+        }
+
         ?>
 
         <div class="panel panel-default">
@@ -49,8 +55,8 @@ if ($result = $conn->query($query)) {
             </div>
             <div class="panel-footer">
                 Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime'].' <a href="post.php?id='.$row['idPost'].'">Permalink</a><br>'; ?>
-                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP">Upvote</a>
-                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN">Downvote</a><br>
+                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP"><span class="glyphicon glyphicon-chevron-up"<?php if($didUpvote) echo ' style="color:red"' ?>></span>Upvote</a>
+                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN"><span class="glyphicon glyphicon-chevron-down"<?php if($didDownvote) echo ' style="color:red"' ?>></span>Downvote</a><br>
                 Post karma: <?php echo ($upvotes-$downvotes); ?> (<?php echo $upvotes; ?> upvotes and <?php echo $downvotes; ?> downvotes)
             </div>
         </div>
