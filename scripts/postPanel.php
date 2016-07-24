@@ -11,7 +11,7 @@ include("../static/config.php");
 
 ?>
 
-<div class="container">
+<!--<div class="container">-->
 
 <?php
 
@@ -70,4 +70,4 @@ if ($result = $conn->query($query)) {
 
 
 ?>
-</div>
+<!--</div>-->

@@ -17,7 +17,7 @@ $posts = array();
 
 ?>
 
-<!--<div class="container">-->
+<div class="container">
 
 <?php
 
@@ -41,6 +41,6 @@ foreach($posts as &$post){
 ?>
 
 
-<!--</div>-->
+</div>
 
 <?php include("../static/footer.php");
