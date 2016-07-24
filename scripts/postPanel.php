@@ -48,7 +48,7 @@ if ($result = $conn->query($query)) {
                 <?php echo substr($row['content'],0,1000)?>
             </div>
             <div class="panel-footer">
-                Posted by <?php echo $row['username'].' on '.$row['datetime'].' <a href="post.php?id='.$row['idPost'].'">Permalink</a><br>'; ?>
+                Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime'].' <a href="post.php?id='.$row['idPost'].'">Permalink</a><br>'; ?>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP">Upvote</a>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN">Downvote</a><br>
                 Post karma: <?php echo ($upvotes-$downvotes); ?> (<?php echo $upvotes; ?> upvotes and <?php echo $downvotes; ?> downvotes)
