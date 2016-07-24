@@ -10,7 +10,7 @@
 $debug = false;
 
 // Global webapp parametres
-$sitename = "Reddit";
+$sitename = "Simplitt";
 
 // Server parametres
 $servername = "localhost";
