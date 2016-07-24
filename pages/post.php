@@ -40,7 +40,7 @@ if ($result = $conn->query($query)) {
     if(isset($_SESSION['id'])){ ?>
         <div class="container">
             <form action="../scripts/commentSubmission.php?postId=<?php echo $_GET['id']; ?>" method="post">
-                <label for="post_content">Comment</label>
+                <label for="comment_content">Comment</label>
                 <textarea class="form-control" rows="3" name="comment_content"></textarea>
                 <br>
                 <input class="btn btn-primary" type="submit">
