@@ -8,6 +8,8 @@
 
 include("../static/config.php");
 
+if(!isset($_SESSION['id'])) { header("Location: ../../pages/login.php"); }
+
 $query = "SELECT type
           FROM postsvotes as v, posts as p, users as u
           WHERE v.postId = p.id
