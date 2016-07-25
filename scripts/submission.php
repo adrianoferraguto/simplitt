@@ -8,7 +8,10 @@
 
 include("../static/config.php");
 
-$query = "INSERT INTO posts (userId, title, content, datetime) VALUES (".$_SESSION['id'].",'$_POST[post_title]','$_POST[post_content]','".date ("Y-m-d H:i:s")."')";
+$title = strip_tags($_POST[post_title]);
+$content = strip_tags($_POST[post_content]);
+
+$query = "INSERT INTO posts (userId, title, content, datetime) VALUES (".$_SESSION['id'].",'$title','$content','".date ("Y-m-d H:i:s")."')";
 
 $conn->query($query);
 
