@@ -38,7 +38,7 @@ include("../static/header.php");
 
 <!--Comment section-->
 <?php
-    $query = "SELECT * FROM comments as c, users as u WHERE c.userId = u.id AND c.postId = ".$_GET['id']." ORDER BY c.datetime DESC";
+    $query = "SELECT *, c.id as commentId FROM comments as c, users as u WHERE c.userId = u.id AND c.postId = ".$_GET['id']." ORDER BY c.datetime DESC";
     if($result = $conn->query($query)){
          while($row = $result->fetch_assoc()){
              ?>
@@ -47,7 +47,10 @@ include("../static/header.php");
                      <?php echo $row['content'];?>
                  </div>
                  <div class="panel-footer">
-                     Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime'].'<br>'; ?>
+                     Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime']; ?>
+                     <?php if($conn->query("SELECT userId FROM comments WHERE id=".$row['commentId'])->fetch_assoc()['userId']===$_SESSION['id']) {
+                         ?> <a href="../scripts/destroy.php?type=comment&id=<?php echo $row['commentId']; ?>">Delete</a> <?php
+                     } ?>
                      <!--<a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP"><span class="glyphicon glyphicon-chevron-up"<?php if($didUpvote) echo ' style="color:red"' ?>></span>Upvote</a>
                      <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN"><span class="glyphicon glyphicon-chevron-down"<?php if($didDownvote) echo ' style="color:red"' ?>></span>Downvote</a><br>
                      Post karma: <?php echo ($upvotes-$downvotes); ?> (<?php echo $upvotes; ?> upvotes and <?php echo $downvotes; ?> downvotes)-->
