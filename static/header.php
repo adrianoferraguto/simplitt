@@ -64,7 +64,7 @@ include("../scripts/karma.php");
                                 <li><a href="#">Karma: <strong><?php echo getUserKarma($_SESSION['id']); ?></strong></a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="../pages/profile.php?id=<?php echo $_SESSION['id']; ?>">My profile</a></li>
-                                <li><a href="#">Account settings</a></li>
+                                <li><a href="../pages/account.php">Account settings</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="../scripts/logout.php">Logout</a></li>
                             </ul>
