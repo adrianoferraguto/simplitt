@@ -53,9 +53,10 @@ if ($result = $conn->query($query)) {
             <div class="panel-footer">
                 Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime'];
                 if($showLink){ echo ' <a href="post.php?id='.$row['idPost'].'">Permalink</a>'; } echo '<br>'; ?>
-                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP"><span class="glyphicon glyphicon-chevron-up"<?php if($didUpvote) echo ' style="color:red"' ?>></span>Upvote</a>
-                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN"><span class="glyphicon glyphicon-chevron-down"<?php if($didDownvote) echo ' style="color:red"' ?>></span>Downvote</a><br>
-                Post karma: <?php echo getPostKarma($_GET['id']) ?>
+                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP"><span class="glyphicon glyphicon-chevron-up"<?php if($didUpvote) echo ' style="color:red"' ?>></span></a>
+                Karma: <?php echo getPostKarma($_GET['id']) ?>
+                <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN"><span class="glyphicon glyphicon-chevron-down"<?php if($didDownvote) echo ' style="color:red"' ?>></span></a><br>
+
             </div>
         </div>
 
