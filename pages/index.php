@@ -23,7 +23,7 @@ $posts = array();
 
         include("../scripts/sortingSelector.php");
 
-        $query = "SELECT *, p.id as idPost FROM posts as p, users as u WHERE u.id = p.userId ORDER BY p.datetime DESC";
+        $query = "SELECT *, p.id as idPost FROM posts as p, users as u WHERE u.id = p.userId ORDER BY p.datetime DESC LIMIT 100";
 
         if ($result = $conn->query($query)) {
 
