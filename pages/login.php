@@ -17,24 +17,49 @@ include("../static/header.php");
 ?>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <form action="../scripts/login.php" method="post">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username"><br><br>
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password"><br><br>
-                    <input type="submit" class="btn btn-primary" value="Login">
-                </form>
-            </div>
-        <div class="col-md-3"></div>
-    </div>
+    <div id="login-form">
+        <form action="../scripts/login.php" method="post" autocomplete="off">
 
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <h2 class="">Login</h2>
+                </div>
+
+                <div class="form-group">
+                    <hr />
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                        <input type="text" name="username" class="form-control" placeholder="Username" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <input type="password" name="password" class="form-control" placeholder="Password" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Login</button>
+                </div>
+
+                <div class="form-group">
+                    <hr />
+                </div>
+
+                <div class="form-group">
+                    Don't have an account? <a href="signup.php">Signup here</a>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
 </div>
 
-<?php
-
-include("../static/footer.php");
-
-?>
+<?php include("../static/footer.php"); ?>
