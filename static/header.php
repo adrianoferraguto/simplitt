@@ -27,7 +27,7 @@ include("../scripts/karma.php");
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><?php echo $sitename ?></a>
+                <a class="navbar-brand" href="index.php"><?php echo $sitename ?></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
