@@ -6,6 +6,8 @@
  * Time: 13.43
  */
 
+$pagename = "Signup";
+
 include("../static/config.php");
 
 if(isset($_SESSION['id'])){
