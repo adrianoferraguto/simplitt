@@ -8,7 +8,10 @@
 
 include("../static/config.php");
 
-$query = "SELECT * FROM users WHERE username='".$_POST['username']."' AND password='".hash('sha256',$_POST['password'])."'";
+$username = strip_tags($_POST['username']);
+$password = hash('sha256',strip_tags($_POST['password']));
+
+$query = "SELECT * FROM users WHERE username='".$username."' AND password='".$password."'";
 $result = $conn->query($query);
 
 if($result->num_rows===1){
