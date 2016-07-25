@@ -36,3 +36,14 @@ function getPostKarma($postId){
     global $conn;
     return $conn->query($query)->fetch_assoc()['karma'];
 }
+
+function cmp($a, $b)
+{
+    return getPostKarma($b)-getPostKarma($a);
+}
+
+
+function sortByKarma($array){
+    usort($array,"cmp");
+    return $array;
+}
