@@ -38,7 +38,7 @@ include("../static/header.php");
 
 <!--Comment section-->
 <?php
-    $query = "SELECT * FROM comments as c, users as u WHERE c.userId = u.id AND c.postId = ".$_GET['id'];
+    $query = "SELECT * FROM comments as c, users as u WHERE c.userId = u.id AND c.postId = ".$_GET['id']." ORDER BY c.datetime DESC";
     if($result = $conn->query($query)){
          while($row = $result->fetch_assoc()){
              ?>

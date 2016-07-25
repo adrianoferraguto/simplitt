@@ -21,7 +21,9 @@ $posts = array();
 
         <?php
 
-        $query = "SELECT *, p.id as idPost FROM posts as p, users as u WHERE u.id = p.userId ORDER BY p.id";
+        include("../scripts/sortingSelector.php");
+
+        $query = "SELECT *, p.id as idPost FROM posts as p, users as u WHERE u.id = p.userId ORDER BY p.datetime DESC";
 
         if ($result = $conn->query($query)) {
 
@@ -34,6 +36,7 @@ $posts = array();
 
             }
         }
+        if(strpos($_SERVER['QUERY_STRING'],'karma')) { $posts = sortByKarma($posts); }
         $showLink = true;
         foreach($posts as &$post){
             $_GET['id'] = $post;
