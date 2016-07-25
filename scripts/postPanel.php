@@ -35,9 +35,6 @@ if ($result = $conn->query($query)) {
     /* fetch associative array */
     while ($row = $result->fetch_assoc()) {
 
-        $upvotes = $conn->query("SELECT count(*) as votes FROM postsvotes, posts WHERE posts.id = postsvotes.postId AND posts.id = ".$row['idPost']." AND postsvotes.type = 'UP';")->fetch_assoc()['votes'];
-        $downvotes = $conn->query("SELECT count(*) as votes FROM postsvotes, posts WHERE posts.id = postsvotes.postId AND posts.id = ".$row['idPost']." AND postsvotes.type = 'DOWN';")->fetch_assoc()['votes'];
-
         if(!isset($_SESSION['id'])) { $didUpvote=0; $didDownvote=0; }
         else {
             $didUpvote = $conn->query("SELECT * FROM postsvotes, posts WHERE posts.id = postsvotes.postId AND posts.id = " . $row['idPost'] . " AND postsvotes.type = 'UP' AND postsvotes.userId = " . $_SESSION['id'] . ";")->num_rows;
@@ -58,7 +55,7 @@ if ($result = $conn->query($query)) {
                 if($showLink){ echo ' <a href="post.php?id='.$row['idPost'].'">Permalink</a>'; } echo '<br>'; ?>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP"><span class="glyphicon glyphicon-chevron-up"<?php if($didUpvote) echo ' style="color:red"' ?>></span>Upvote</a>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN"><span class="glyphicon glyphicon-chevron-down"<?php if($didDownvote) echo ' style="color:red"' ?>></span>Downvote</a><br>
-                Post karma: <?php echo ($upvotes-$downvotes); ?> (<?php echo $upvotes; ?> upvotes and <?php echo $downvotes; ?> downvotes)
+                Post karma: <?php echo getPostKarma($_GET['id']) ?>
             </div>
         </div>
 

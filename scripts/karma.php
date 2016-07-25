@@ -27,3 +27,12 @@ function getUserKarma($userId){
     return $conn->query($query)->fetch_assoc()['karma'];
 }
 
+function getPostKarma($postId){
+    $query = "SELECT
+              postId
+              ,count(case when type = 'UP' then 1 end)-count(case when type = 'DOWN' then 1 end) karma
+              FROM postsvotes
+              WHERE postId=".$postId;
+    global $conn;
+    return $conn->query($query)->fetch_assoc()['karma'];
+}
