@@ -12,6 +12,9 @@ $debug = false;
 // Global webapp parametres
 $sitename = "Simplitt";
 
+// Defines max number of posts retrieved
+$limit = 100;
+
 // Server parametres
 $servername = "localhost";
 $username = "root";
