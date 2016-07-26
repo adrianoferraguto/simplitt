@@ -19,8 +19,17 @@ function destroyComment($commentId){
 }
 
 function destroyPost($postId){
-
+    global $conn;
+    global $_SESSION;
+    if($conn->query("SELECT userId FROM posts WHERE id=".$postId)->fetch_assoc()['userId']===$_SESSION['id']) {
+        $query = "DELETE FROM comments WHERE postId=".$postId;
+        $conn->query($query);
+        $query = "DELETE FROM postsvotes WHERE postId=".$postId;
+        $conn->query($query);
+        $query = "DELETE FROM posts WHERE id=".$postId;
+        $conn->query($query);
+    }
 }
 
-if($_GET['type']==='comment'){ destroyComment($_GET['id']); } else if($_GET['type']==='post'){ destroPost($_GET['id']); }
+if($_GET['type']==='comment'){ destroyComment($_GET['id']); } else if($_GET['type']==='post'){ destroyPost($_GET['id']); }
 header('Location: ' . $_SERVER['HTTP_REFERER']);

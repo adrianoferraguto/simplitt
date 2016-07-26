@@ -52,7 +52,10 @@ if ($result = $conn->query($query)) {
             </div>
             <div class="panel-footer">
                 Posted by <?php echo '<a href="../pages/profile.php?id='.$row['userId'].'">'.$row['username'].'</a> on '.$row['datetime'];
-                if($showLink){ echo ' <a href="post.php?id='.$row['idPost'].'">Permalink</a>'; } echo '<br>'; ?>
+                if($showLink){ echo ' <a href="post.php?id='.$row['idPost'].'">Permalink</a>'; } ?>
+                <?php if($conn->query("SELECT userId FROM posts WHERE id=".$row['idPost'])->fetch_assoc()['userId']===$_SESSION['id']) {
+                    ?> <a href="../scripts/destroy.php?type=post&id=<?php echo $row['idPost']; ?>">Delete</a> <?php
+                } ?> <br>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=UP"><span class="glyphicon glyphicon-chevron-up"<?php if($didUpvote) echo ' style="color:red"' ?>></span></a>
                 Karma: <?php echo getPostKarma($_GET['id']) ?>
                 <a href="../scripts/vote.php/?id=<?php echo $row['idPost']; ?>&type=DOWN"><span class="glyphicon glyphicon-chevron-down"<?php if($didDownvote) echo ' style="color:red"' ?>></span></a><br>
