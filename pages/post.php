@@ -63,3 +63,5 @@ include("../static/header.php");
 ?>
 
 </div>
+
+<?php include("../static/footer.php");
